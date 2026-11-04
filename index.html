@@ -60,7 +60,17 @@
           j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-NXSWS6VZ');</script>
- 
+ <script>
+ window.trackSDKEvent = function(eventName, params) {
+   if (
+     window.analytics &&
+     typeof window.analytics.trackCustomEvent === 'function'
+   ) {
+     return window.analytics.trackCustomEvent(eventName, params);
+   }
+   console.error('Analytics SDK is not initialized yet');
+ };
+</script>
   <!-- <script type="text/javascript" src='https://web-analytics-js1-dot-uxlwqzc-cdip-sandbox-test.uc.r.appspot.com/static/analytics.js?crossdomainflag=false&deleteprofile=false&multiDomainFlag=true&googleCookieSyncFlag=false&automaticTracking=true&domainArray=["example.com","vercel.app","anotherdomain.com"]&requiredPurposeIds=["1","3","4"]&dataLayer=dataLayer'> 
 </script> -->
 <script src="https://assets.adobedtm.com/e72b4113c11a/5ebd3516dcb5/launch-819a7f37f5dd-development.min.js"
