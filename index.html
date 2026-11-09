@@ -28,7 +28,10 @@
 
 
   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script> -->
-  
+
+    
+
+    
    
 
   <!-- OneTrust Cookies Consent Notice start for testinovation-cdp.vercel.app -->
@@ -73,39 +76,7 @@
 </script> -->
   <!-- <script type="text/javascript" src='https://web-analytics-js1-dot-uxlwqzc-cdip-sandbox-test.uc.r.appspot.com/static/analytics.js?crossdomainflag=false&deleteprofile=false&multiDomainFlag=true&googleCookieSyncFlag=false&automaticTracking=true&domainArray=["example.com","vercel.app","anotherdomain.com"]&requiredPurposeIds=["1","3","4"]&dataLayer=dataLayer'> 
 </script> -->
-<script src="https://assets.adobedtm.com/e72b4113c11a/5ebd3516dcb5/launch-819a7f37f5dd-development.min.js"
-  <script type="text/javascript">
-    let timeOffset = 0;
-    async function getAccurateTimestamp() {
-      try {
-        const response = await fetch('https://www.timeapi.io/api/Time/current/zone?timeZone=Asia/Kolkata');
-        const data = await response.json();
-        console.log(" data.dateTime ", data.dateTime);
-        const internetTime = new Date(data.dateTime).getTime();
-        const localTime = Date.now();
-        timeOffset = internetTime - localTime;
-        console.log(" internetTime ", internetTime, " localTime ", localTime, " timeOffset ", timeOffset);
-        console.log("Time offset set:", timeOffset);
-        return data.dateTime;
-      } catch (err) {
-        console.error('Failed to fetch internet time, using device time.', err);
-        return new Date().toISOString();
-      }
-    }
-    getAccurateTimestamp();
-    function getAccurateEventTimestamp() {
-      console.log(" getAccurateEventTimestamp timeOffset ", timeOffset);
-      const correctedTime = new Date(Date.now() + timeOffset);
-      return correctedTime.toISOString();
-    }
-
-
-
-
-
-
-
-  </script>
+<script src="https://assets.adobedtm.com/e72b4113c11a/5ebd3516dcb5/launch-819a7f37f5dd-development.min.js" async></script>
 
 
 </head>
