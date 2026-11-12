@@ -28,6 +28,60 @@
 
 
   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script> -->
+  <script>
+    // Function to call API
+       
+   
+     function getCookie(name) {
+  try {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      const [key, value] = cookie.split('=');
+      if (key.trim() === name.trim()) {
+        return decodeURIComponent(value);
+      }
+    }
+    return null; // Return null if the cookie is not found
+  } catch (error) {
+    console.log("Error : ", error);
+  }
+}
+   
+    function callAPI() { 
+        let userIDcookie = getCookie('userID');
+     console.log("userIDcookie ", userIDcookie);
+      if (!userIDcookie) {
+       console.warn("No useridcookie found, showing default banner");
+        return; // keep default values
+      }
+      const url = "https://analytics.soundandsilence.in/recommendations/"+userIDcookie;
+      
+      console.log("api url ", url);
+       const bannerImg = document.getElementById("bannerImg");
+    const bannerName = document.getElementById("bannerName");
+    const bannerPrice = document.getElementById("bannerPrice");
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          console.log("api data ", data);
+           if (data && data.productinfo && data.persona) {
+          if (data.productinfo.productUrl) {
+            bannerImg.src = data.productinfo.productUrl;
+          }
+          if (data.persona.favouriteJeans) {
+            // Update product name but keep <br> + <b> intact
+            bannerName.innerHTML = data.persona.favouriteJeans + "<br><b id='bannerPrice'>$" + 
+              (data.productinfo.productPrice || "24.99") + "</b>";
+          }
+        }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    }
+    // Call API automatically on page load
+    window.onload = callAPI;
+  </script>
 
     
 
